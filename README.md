@@ -1,4 +1,4 @@
-sanhar
+Sanhar
 ======
 
 Lightweight NodeJs HMVC framework
