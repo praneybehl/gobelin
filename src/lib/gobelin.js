@@ -39,7 +39,7 @@ module.exports = {
     else
       settings = require(util.format('%s/%s',process.cwd(), "settings.js"))   
     if(program.location){
-      location = program.location
+      location = process.cwd() + '/' + program.location
       if(location[location.length - 1]!='/')
         location += "/"      
     }else{
