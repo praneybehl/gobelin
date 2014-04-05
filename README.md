@@ -16,28 +16,40 @@ To install, you need to execute the following command
 ## Usage
 
 ### Creating a new project (not implemented)
+
 To create a new project, use the following command
+
 `gobelin createProject project_name`
 
 ### Creating a new module (not implemented)
+
 To create a new module, use the following command. Default controllers will be created
+
 `gobelin createModule module_name`
 
 ### Starting the server
+
 To start a gobelin instance, use the following command
+
 `gobelin [-s <path>] [-l <path>] [-p <integer>]`
+
 Here are some details about each settings
-**-s <path>**
+
+#### -s, --settings <path>
 This is used to provide the location for a settings file.
+
 *Defaults to settings.js*
 
-**-l <path>**
+#### -l, --location <path>
 This is used to provide the location of the project.
+
 *Defaults to the current working directory*
 
-**-p <integer>**
+#### -p, --port <integer>
 This is used to provide a port which will override the one in your settings file
+
 *Defaults to the port provided in the settings file*
+
 
 ##How it works
 To make it short, every module in the "modules" folder are composed of controllers(one for each major HTTP verb), 
