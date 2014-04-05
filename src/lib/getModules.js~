@@ -3,7 +3,7 @@ var fs = require("fs"),
     util = require("util")
    
 module.exports = {
-  getRoutes : function (cb){
+  getModules : function (cb){
     dir = util.format("%smodules", location)
     fs.readdir(dir, function (err, files) {
       if (err) {

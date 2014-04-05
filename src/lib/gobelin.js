@@ -3,7 +3,7 @@ var program = require('commander')
 var colors = require('colors')
 var util = require('util')
 var express = require('express');
-var getRoutes = require('../lib/getRoutes').getRoutes
+var getModules = require('../lib/getModules').getModules
 var settings
 program.version('0.1.1')
   .option('-s, --settings <settings>', 'Settings used to launch server. If empty, uses "settings.js" from current working directory.')
@@ -15,7 +15,7 @@ program.version('0.1.1')
 local = {
   run : function(){
     app = express()
-    getRoutes(function(){
+    getModules(function(){
       var server = app.listen(port, function() {
         console.log('\nGobelin is running with the following settings : '.bold)
         console.log('Port : '.bold + port.toString().green)
