@@ -5,6 +5,7 @@ var util = require('util')
 var express = require('express');
 var mongoose = require('mongoose')
 var getModules = require('../lib/getModules').getModules
+var enableMultiViews = require('../lib/multiViews').enableMultiViews
 var settings
 program.version('0.1.1')
   .option('-s, --settings <settings>', 'Settings used to launch server. If empty, uses "settings.js" from current working directory.')
@@ -15,10 +16,15 @@ program.version('0.1.1')
 
 local = {
   run : function(){
+    enableMultiViews(express)
     app = express()
+    app.set('view engine', 'jade')
+    app.use(express.logger('dev'))
     mongoose.connect(util.format('mongodb://%s:%s@%s:%s/%s',settings.db.user,settings.db.password,settings.db.url,settings.db.port,settings.db.name))
     Schema = mongoose.Schema
+    viewsFolders=[]
     getModules(function(){
+      app.set('views', viewsFolders);
       var server = app.listen(port, function() {
         console.log('\nGobelin is running with the following settings : '.bold)
         console.log('Port : '.bold + port.toString().green)

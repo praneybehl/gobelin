@@ -36,6 +36,12 @@ function loadModels(file){
   }
 }
 
+function loadViews(file){
+  pathToViews = util.format("%s/%s",file,"views")
+  if (fs.existsSync(pathToViews))
+    viewsFolders.push(pathToViews)
+}
+
 
 module.exports = {
   getModules : function (cb){
@@ -51,6 +57,7 @@ module.exports = {
       }).forEach(function (file) {
           module = file.split('/').slice(-1)[0]
           console.log("Loading module : %s", module.bold.green)
+          loadViews(file)
           loadModels(file)
           loadControllers(file)
       })
