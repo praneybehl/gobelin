@@ -12,7 +12,7 @@ function loadControllers(file){
       controller = require(pathToController)
       Object.keys(controller).forEach(function (key) {
         var func = controller[key];
-        app.get(util.format('/%s/%s',module,key), func)
+        app[verb](util.format('/%s/%s',module,key), func)
       }) 
     } 
   })
