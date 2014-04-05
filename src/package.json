@@ -18,7 +18,8 @@
   "dependencies": {
       "commander" : "2.2.0" ,
       "colors"    : "0.6.2",
-      "express"   : "3.5.1" 
+      "express"   : "3.5.1",
+      "mongoose"  : "3.8.8" 
    },
   "engines": {
     "node": "*"

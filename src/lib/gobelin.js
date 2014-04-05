@@ -3,6 +3,7 @@ var program = require('commander')
 var colors = require('colors')
 var util = require('util')
 var express = require('express');
+var mongoose = require('mongoose')
 var getModules = require('../lib/getModules').getModules
 var settings
 program.version('0.1.1')
@@ -15,6 +16,8 @@ program.version('0.1.1')
 local = {
   run : function(){
     app = express()
+    mongoose.connect(util.format('mongodb://%s:%s@%s:%s/%s',settings.db.user,settings.db.password,settings.db.url,settings.db.port,settings.db.name))
+    Schema = mongoose.Schema
     getModules(function(){
       var server = app.listen(port, function() {
         console.log('\nGobelin is running with the following settings : '.bold)
