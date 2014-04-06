@@ -39,15 +39,17 @@ function loadModels(file){
 
 function loadViews(file){
   pathToViews = util.format("%s/%s",file,"views")
-  if (fs.existsSync(pathToViews))
+  if (fs.existsSync(pathToViews)){
     console.log("-- Loading views")
     viewsFolders.push(pathToViews)
+  }
 }
 function loadStatics(file){
   pathToStatic = util.format("%s/%s",file,"static")
-  if (fs.existsSync(pathToStatic))
+  if (fs.existsSync(pathToStatic)){
     console.log("-- Loading static files")
     app.use(express.static(pathToStatic))
+  }
 }
 
 
