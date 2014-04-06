@@ -25,6 +25,7 @@ local = {
     viewsFolders=[]
     getModules(function(){
       app.set('views', viewsFolders);
+      app.use(express.compress());
       var server = app.listen(port, function() {
         console.log('\nGobelin is running with the following settings : '.bold)
         console.log('Port : '.bold + port.toString().green)

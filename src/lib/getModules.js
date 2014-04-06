@@ -1,7 +1,8 @@
 var fs = require('fs'),
     path = require('path'),
     util = require('util'),
-    mongoose = require('mongoose')
+    mongoose = require('mongoose'),
+    express = require('express')
 
 // function used to load all controllers
 function loadControllers(file){
@@ -39,7 +40,14 @@ function loadModels(file){
 function loadViews(file){
   pathToViews = util.format("%s/%s",file,"views")
   if (fs.existsSync(pathToViews))
+    console.log("-- Loading views")
     viewsFolders.push(pathToViews)
+}
+function loadStatics(file){
+  pathToStatic = util.format("%s/%s",file,"static")
+  if (fs.existsSync(pathToStatic))
+    console.log("-- Loading static files")
+    app.use(express.static(pathToStatic))
 }
 
 
@@ -57,6 +65,7 @@ module.exports = {
       }).forEach(function (file) {
           module = file.split('/').slice(-1)[0]
           console.log("Loading module : %s", module.bold.green)
+          loadStatics(file)
           loadViews(file)
           loadModels(file)
           loadControllers(file)
