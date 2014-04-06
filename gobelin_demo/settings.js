@@ -3,8 +3,8 @@ module.exports = {
   db  : {
     url     : "localhost" ,
     port    : "27017"     ,
-    name    : "truc" ,
-    user    : "admin"     ,
-    password: "truc"   
+    name    : "gobelin_demo" ,
+    user    : "gobelin_demo"     ,
+    password: "123456"   
   }
 }

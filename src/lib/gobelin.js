@@ -18,20 +18,28 @@ local = {
   run : function(){
     enableMultiViews(express)
     app = express()
+    app.use(express.bodyParser())
+    app.use(express.compress());
     app.set('view engine', 'jade')
     app.use(express.logger('dev'))
+    // Useable in all templates
+    app.use(function(req,res,next){
+      app.locals.req = req
+      next()
+    })
+    
     mongoose.connect(util.format('mongodb://%s:%s@%s:%s/%s',settings.db.user,settings.db.password,settings.db.url,settings.db.port,settings.db.name))
     Schema = mongoose.Schema
     viewsFolders=[]
     getModules(function(){
       app.set('views', viewsFolders);
-      app.use(express.compress());
       var server = app.listen(port, function() {
         console.log('\nGobelin is running with the following settings : '.bold)
         console.log('Port : '.bold + port.toString().green)
         console.log('Database : '.bold + util.format("%s@%s/%s:%s", settings.db.user, settings.db.url, settings.db.name, settings.db.port).green)
         console.log(util.format("Press %s to shut down the server.\n".bold, "CTRL+C".magenta))
       })
+      io = require('socket.io').listen(server,{log:false});
     })
   },
 }

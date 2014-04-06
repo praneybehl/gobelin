@@ -1,0 +1,54 @@
+ul.nav li.over {
+  background-color:#5e6d82;
+}
+/* Aloha Editor */
+.aloha .aloha-ui-toolbar {
+   top:53px !important;
+   margin-left:-5px;
+   width:auto;
+}
+.aloha .aloha-ui-toolbar .ui-widget-header{
+   display:none;
+}
+#alohaContainer {
+    margin-bottom: 10px;
+    height: 60px;
+}
+.aloha .aloha-ui-toolbar .ui-tabs-panel{
+   border:none;
+   box-shadow:none;
+}
+.aloha-ui-pin {
+    display: none !important;
+}
+.aloha-editable-active, .aloha-editable-active[contenteditable=true]:focus {
+   outline: #f0f0f0 solid 5px!important;
+}
+
+/* Responsive styles */
+    
+/* Largeish screen */
+/* UP TO 1200PX (COMPUTER SCREEN) */
+@media (max-width:1200px){
+
+}
+
+/* UP TO 979PX (TABLET SCREEN) */
+@media (max-width:979px){
+   .aloha .aloha-ui-toolbar {
+      margin-left:15px;
+      margin-top:0px;
+      width:100%;
+   }
+}
+
+/* UP TO 979PX (PHONE SCREEN) */
+@media (max-width:767px){
+
+}
+
+/* UP TO 979PX (TOASTER SCREEN) */
+@media (max-width:480px){
+   
+}
+

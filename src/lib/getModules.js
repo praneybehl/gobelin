@@ -17,7 +17,7 @@ function loadControllers(file){
         if(key.toLowerCase() == "index")
           route = util.format('/%s',module)
         else
-          route = util.format('/%s/%s',module,key)
+          route = key
         app[verb](route , func)
       }) 
     } 
@@ -51,7 +51,6 @@ function loadStatics(file){
     app.use(express.static(pathToStatic))
   }
 }
-
 
 module.exports = {
   getModules : function (cb){

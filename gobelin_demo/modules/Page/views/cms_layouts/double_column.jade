@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+   .row
+      .span12
+         h1 #{page.name}
+   .row
+      +cmsBlock(6, "content_left")
+      +cmsBlock(6, "content_right")
+   .row
+      .span12
+         img(class="bot-picture", src="#{page.bot_picture}")
