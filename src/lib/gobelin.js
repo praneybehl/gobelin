@@ -18,9 +18,9 @@ program.version('0.1.1')
 local = {
   run : function(){
     if(program.settings)
-      settings = require(util.format('%s/%s',process.cwd(), program.settings))
+      settings = require(util.format('%s/%s',location, program.settings))
     else
-      settings = require(util.format('%s/%s',process.cwd(), "settings.js"))
+      settings = require(util.format('%s/%s',location, "settings.js"))
     if(program.port)
       port = program.port
     else
