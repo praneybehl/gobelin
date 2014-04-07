@@ -18,18 +18,13 @@ local = {
   run : function(){
     enableMultiViews(express)
     app = express()
-    app.use(express.bodyParser())
+    mongoose.connect(util.format('mongodb://%s:%s@%s:%s/%s',settings.db.user,settings.db.password,settings.db.url,settings.db.port,settings.db.name))
+    Schema = mongoose.Schema
+    app.use(express.json());
+    app.use(express.urlencoded());
     app.use(express.compress());
     app.set('view engine', 'jade')
     app.use(express.logger('dev'))
-    // Useable in all templates
-    app.use(function(req,res,next){
-      app.locals.req = req
-      next()
-    })
-    
-    mongoose.connect(util.format('mongodb://%s:%s@%s:%s/%s',settings.db.user,settings.db.password,settings.db.url,settings.db.port,settings.db.name))
-    Schema = mongoose.Schema
     viewsFolders=[]
     getModules(function(){
       app.set('views', viewsFolders);

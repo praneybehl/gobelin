@@ -51,6 +51,17 @@ function loadStatics(file){
     app.use(express.static(pathToStatic))
   }
 }
+function loadMiddlewares(file){
+  pathToMiddlewares = util.format("%s/%s",file,"middlewares.js")
+  if (fs.existsSync(pathToMiddlewares)){
+    console.log("-- Loading middlewares")
+    middlewares = require(pathToMiddlewares)
+    Object.keys(middlewares).forEach(function (key){
+      middleware = middlewares[key]
+      app.use(middleware)
+    }); 
+  }
+}
 
 module.exports = {
   getModules : function (cb){
@@ -69,6 +80,7 @@ module.exports = {
           loadStatics(file)
           loadViews(file)
           loadModels(file)
+          loadMiddleware(file)
           loadControllers(file)
       })
       cb()
