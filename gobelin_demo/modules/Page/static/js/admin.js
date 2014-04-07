@@ -9,7 +9,7 @@ Aloha.bind('aloha-editable-deactivated', function (evt, editable) {
    contentName = $(editable.editable.obj[0]).attr("data-cms-block")
    $.ajax({
      type: "POST",
-     url: "/page/newContent",
+     url: "/admin/page/newContent",
      data: { "slug":$("html").attr("data-cms-page"),"newContent" : contentText, "contentName": contentName}
    })
 })
@@ -37,7 +37,7 @@ function handleDragOver(e) {
       if (parseInt($(this).attr("data-cms-order"))>parseInt($(drgElem).attr("data-cms-order"))){
          $(drgElem).insertAfter(this)
       }else{
-         $(drgElem).insertBefore(this)   
+         $(drgElem).insertBefore(this)
       }
    }
    $("ul.nav li a").each(function(index) {
@@ -53,7 +53,7 @@ function handleDrop(e) {
       if ($(this).attr("data-cms-order")>$(drgElem).attr("data-cms-order")){
          $(drgElem).insertAfter(this)
       }else{
-         $(drgElem).insertBefore(this)  
+         $(drgElem).insertBefore(this)
       }
    }
    newPagesOrder = []
@@ -65,7 +65,7 @@ function handleDrop(e) {
    $('.oActive').addClass('active')
    $.ajax({
      type: "POST",
-     url: '/page/reorder',
+     url: '/admin/page/reorder',
      data: { "newPagesOrder":newPagesOrder}
    })
    return false

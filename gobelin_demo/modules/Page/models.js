@@ -6,9 +6,6 @@ Page = new Schema({
   layout:{type:String},
   bot_picture:{type:String},
   order:{type:Number}
-},{
-  strict:false,
-  collection:"page"
 })
 Page.methods.getContentByName = function (params, callback) {
   return this.content[params]

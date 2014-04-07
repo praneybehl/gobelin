@@ -1,0 +1,14 @@
+html
+head
+  script(src="/js/Auth/jquery.js")
+  script(src="/js/Auth/jquery.form.js")
+  script(src="/js/Auth/app.js")
+body
+  form(id="authForm", action="/login", method="POST")
+    span Username :
+    input(type="text", name="username")
+
+    span Password :
+    input(type="password", name="password")
+
+    input(type="submit", value="Login")

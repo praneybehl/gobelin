@@ -1,11 +1,10 @@
-//- All 1==1 should be auth logic
 mixin cmsBlock(width, name)
    div(class="span#{width}")
-      #textContent(data-cms-block = "#{name}", class=(1==1)?"editable" : None) !{page.getContentByName(name)}
+      #textContent(data-cms-block = "#{name}", class=(user && user.hasPermission("cms-admin"))?"editable" : None) !{page.getContentByName(name)}
 
 mixin cmsMenu(menuItems, currentPage, activeClass)
    - activeClass = activeClass || "active oActive"
    ul.nav
       for menuItem in menuItems
-         li(class=(menuItem.slug == currentPage.slug)?activeClass : None, data-cms-order=(1==1)?menuItem.order : None)
-            a(href="/#{menuItem.slug}", draggable=(1==1)?"true" : None, data-cms-slug=(1==1)?menuItem.slug : None) #{menuItem.name}
+         li(class=(menuItem.slug == currentPage.slug)?activeClass : None, data-cms-order=(user && user.hasPermission("cms-admin"))?menuItem.order : None)
+            a(href="/#{menuItem.slug}", draggable=(user && user.hasPermission("cms-admin"))?"true" : None, data-cms-slug=(user && user.hasPermission("cms-admin"))?menuItem.slug : None) #{menuItem.name}

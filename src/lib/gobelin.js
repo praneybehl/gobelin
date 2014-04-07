@@ -20,9 +20,11 @@ local = {
     app = express()
     mongoose.connect(util.format('mongodb://%s:%s@%s:%s/%s',settings.db.user,settings.db.password,settings.db.url,settings.db.port,settings.db.name))
     Schema = mongoose.Schema
-    app.use(express.json());
-    app.use(express.urlencoded());
-    app.use(express.compress());
+    app.use(express.cookieParser())
+    app.use(express.session({ secret : settings.sessionSecret }))
+    app.use(express.json())
+    app.use(express.urlencoded())
+    app.use(express.compress())
     app.set('view engine', 'jade')
     //app.use(express.logger('dev'))
     viewsFolders=[]
@@ -47,11 +49,11 @@ module.exports = {
     if(program.settings)
       settings = require(util.format('%s/%s',process.cwd(), program.settings))
     else
-      settings = require(util.format('%s/%s',process.cwd(), "settings.js"))   
+      settings = require(util.format('%s/%s',process.cwd(), "settings.js"))
     if(program.location){
       location = process.cwd() + '/' + program.location
       if(location[location.length - 1]!='/')
-        location += "/"      
+        location += "/"
     }else{
       location = process.cwd() + "/"
     }
@@ -59,6 +61,6 @@ module.exports = {
       port = program.port
     else
       port = settings.port
-    local[program.args[0]]() 
+    local[program.args[0]]()
   }
 }
