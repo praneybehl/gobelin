@@ -1,4 +1,5 @@
 include cms_helpers/helpers.jade
+
 doctype html
 html(data-cms-page="#{page.slug}")
    head
@@ -23,6 +24,8 @@ html(data-cms-page="#{page.slug}")
                .nav-collapse.collapse
                   +cmsMenu(menuItems, page)
       .container
+         p #{session}
+         p #{session1}
          block content   
       script(type="text/javascript", src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
       script(type="text/javascript", src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js")

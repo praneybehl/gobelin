@@ -24,7 +24,7 @@ local = {
     app.use(express.urlencoded());
     app.use(express.compress());
     app.set('view engine', 'jade')
-    app.use(express.logger('dev'))
+    //app.use(express.logger('dev'))
     viewsFolders=[]
     getModules(function(){
       app.set('views', viewsFolders);

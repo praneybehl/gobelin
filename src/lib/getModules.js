@@ -52,9 +52,10 @@ function loadStatics(file){
   }
 }
 function loadMiddlewares(file){
-  pathToMiddlewares = util.format("%s/%s",file,"middlewares.js")
+  pathToMiddlewares = util.format("%s/%s",file,"middlewares.js")  
+  module = file.split('/').slice(-1)[0]
   if (fs.existsSync(pathToMiddlewares)){
-    console.log("-- Loading middlewares")
+    console.log("Loading middlewares for ".bold + module.green.bold)
     middlewares = require(pathToMiddlewares)
     Object.keys(middlewares).forEach(function (key){
       middleware = middlewares[key]
@@ -75,12 +76,17 @@ module.exports = {
       files.map(function (file) {
           return path.join(dir, file)
       }).forEach(function (file) {
+          loadMiddlewares(file)
+      })
+
+      files.map(function (file) {
+          return path.join(dir, file)
+      }).forEach(function (file) {
           module = file.split('/').slice(-1)[0]
-          console.log("Loading module : %s", module.bold.green)
+          console.log("\nLoading module : %s", module.bold.green)
           loadStatics(file)
           loadViews(file)
           loadModels(file)
-          loadMiddleware(file)
           loadControllers(file)
       })
       cb()
