@@ -10,7 +10,7 @@ growing white hair.
 
 ## Installation
 
-To install, you need to execute the following command 
+To install, you need to execute the following command
 `npm install -g gobelin`
 
 ## Usage
@@ -19,13 +19,15 @@ To install, you need to execute the following command
 
 To create a new project, use the following command
 
-`gobelin createProject project_name`
+`gobelin newApplication -l path_to_new_app`
 
 ### Creating a new module (not implemented)
 
 To create a new module, use the following command. Default controllers will be created
 
-`gobelin createModule module_name`
+`gobelin newModule -l path_to_app`
+
+Note that if you do not enter the path, it will try to create it in the current working directory
 
 ### Starting the server
 
@@ -53,6 +55,4 @@ This is used to provide a port which will override the one in your settings file
 
 ##How it works
 To make it short, every module in the "modules" folder are composed of controllers(one for each major HTTP verb), 
-a models file, a views folder as well as a route override file, as well as its own configuration file which can be used
-to, for example, disable default routes. A more exhaustive list of settings will be made once those are implemented.
-Default routes always point to `module_name/function_name`
+a models file, a views folder as well as a static folder and a middleware file. The function of each of those is quite explicit, if in doubt, a brief explanation is given in each file.
