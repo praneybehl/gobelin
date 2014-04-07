@@ -59,7 +59,7 @@ function loadMiddlewares(file){
     middlewares = require(pathToMiddlewares)
     Object.keys(middlewares).forEach(function (key){
       middleware = middlewares[key]
-      app.use(middleware)
+      app.use(key,middleware)
     }); 
   }
 }
