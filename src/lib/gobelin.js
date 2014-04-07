@@ -27,6 +27,7 @@ local = {
     app.use(express.compress())
     app.set('view engine', 'jade')
     //app.use(express.logger('dev'))
+    app.locals.basedir = location+"views";
     viewsFolders=[]
     getModules(function(){
       app.set('views', viewsFolders);

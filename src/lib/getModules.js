@@ -9,7 +9,7 @@ function loadControllers(file){
   verbs = ["all","get","post","head","put","delete"]
   verbs.forEach(function (verb){
     pathToController = util.format("%s/%s%s",file, verb, "Controller.js")
-    if (fs.existsSync(pathToController)) { 
+    if (fs.existsSync(pathToController)) {
       console.log(util.format("-- Loading controller ( %s )",verb.toUpperCase().bold))
       controller = require(pathToController)
       Object.keys(controller).forEach(function (key) {
@@ -19,8 +19,8 @@ function loadControllers(file){
         else
           route = key
         app[verb](route , func)
-      }) 
-    } 
+      })
+    }
   })
 }
 
@@ -52,15 +52,16 @@ function loadStatics(file){
   }
 }
 function loadMiddlewares(file){
-  pathToMiddlewares = util.format("%s/%s",file,"middlewares.js")  
+  pathToMiddlewares = util.format("%s/%s",file,"middlewares.js")
   module = file.split('/').slice(-1)[0]
   if (fs.existsSync(pathToMiddlewares)){
     console.log("Loading middlewares for ".bold + module.green.bold)
     middlewares = require(pathToMiddlewares)
     Object.keys(middlewares).forEach(function (key){
       middleware = middlewares[key]
+      pathToModuleViews = util.format("%s/%s",file,"views")
       app.use(key,middleware)
-    }); 
+    });
   }
 }
 
@@ -78,7 +79,9 @@ module.exports = {
       }).forEach(function (file) {
           loadMiddlewares(file)
       })
-
+      console.log("\nLoading general files")
+      loadStatics(location)
+      loadViews(location)
       files.map(function (file) {
           return path.join(dir, file)
       }).forEach(function (file) {
