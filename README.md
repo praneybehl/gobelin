@@ -15,13 +15,13 @@ To install, you need to execute the following command
 
 ## Usage
 
-### Creating a new project (not implemented)
+### Creating a new project
 
 To create a new project, use the following command
 
 `gobelin newApplication -l path_to_new_app`
 
-### Creating a new module (not implemented)
+### Creating a new module
 
 To create a new module, use the following command. Default controllers will be created
 
