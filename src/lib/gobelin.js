@@ -4,6 +4,7 @@ var colors = require('colors')
 var util = require('util')
 var express = require('express');
 var mongoose = require('mongoose')
+var ncp = require('ncp').ncp
 var getModules = require('../lib/getModules').getModules
 var enableMultiViews = require('../lib/multiViews').enableMultiViews
 var settings
@@ -16,6 +17,14 @@ program.version('0.1.1')
 
 local = {
   run : function(){
+    if(program.settings)
+      settings = require(util.format('%s/%s',process.cwd(), program.settings))
+    else
+      settings = require(util.format('%s/%s',process.cwd(), "settings.js"))
+    if(program.port)
+      port = program.port
+    else
+      port = settings.port
     enableMultiViews(express)
     app = express()
     mongoose.connect(util.format('mongodb://%s:%s@%s:%s/%s',settings.db.user,settings.db.password,settings.db.url,settings.db.port,settings.db.name))
@@ -40,6 +49,22 @@ local = {
       io = require('socket.io').listen(server,{log:false});
     })
   },
+  newApplication : function(){
+    ncp(__dirname+"/skeleton/newApp", location, function(err){
+      if (err){
+        return console.log(err)
+      }
+      console.log('New application created!'.bold.green)
+    })
+  },
+  newModule : function(){
+    ncp(__dirname+"/skeleton/newModule", location+"modules/newModule", function(err){
+      if (err){
+        return console.log(err)
+      }
+      console.log('New module created!'.bold.green)
+    })
+  }
 }
 
 // Main
@@ -47,10 +72,6 @@ module.exports = {
   initialize : function (){
     if(!program.args[0])
       program.args[0] = "run"
-    if(program.settings)
-      settings = require(util.format('%s/%s',process.cwd(), program.settings))
-    else
-      settings = require(util.format('%s/%s',process.cwd(), "settings.js"))
     if(program.location){
       location = process.cwd() + '/' + program.location
       if(location[location.length - 1]!='/')
@@ -58,10 +79,6 @@ module.exports = {
     }else{
       location = process.cwd() + "/"
     }
-    if(program.port)
-      port = program.port
-    else
-      port = settings.port
     local[program.args[0]]()
   }
 }

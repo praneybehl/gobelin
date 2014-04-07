@@ -8,7 +8,7 @@ var fs = require('fs'),
 function loadControllers(file){
   verbs = ["all","get","post","head","put","delete"]
   verbs.forEach(function (verb){
-    pathToController = util.format("%s/%s%s",file, verb, "Controller.js")
+    pathToController = util.format("%s/controllers/%s%s",file, verb, "Controller.js")
     if (fs.existsSync(pathToController)) {
       console.log(util.format("-- Loading controller ( %s )",verb.toUpperCase().bold))
       controller = require(pathToController)
