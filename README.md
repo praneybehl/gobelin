@@ -1,12 +1,11 @@
 # Gobelin
 
 Gobelin is a lightweight Node.JS HMVC framework which intends to simplify the
-creation of modules via its HMVC architecture. It is also created to add
-simplicity to Node.JS development as it has quite a steep learning curve. This
-framework aims for both performances and ease-of-use while keeping it simple in
-its source code. No hand holding, just providing an efficient way to modularize
-your projects and provide a sane default environment, thus keeping your developers from
-growing white hair.
+creation of modules via its HMVC architecture. It is built on major and 
+battlehardened technologies such as Express, mongoose and jade, thus making it quite 
+robust. This framework aims for both performances and ease-of-use while keeping it 
+simple in its source code and as close to the metal as possible. The framework is still
+under development and any feature requested will be evaluated and likely added.
 
 ## Installation
 
